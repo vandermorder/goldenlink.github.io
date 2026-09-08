@@ -1,0 +1,2 @@
+# goldenlink.my.id
+hellow
