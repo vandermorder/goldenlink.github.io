@@ -46,6 +46,122 @@ body {
     color: white;
 }
 
+/* --- SIDE MENU (MENU SAMPING TERSEMBUNYI) --- */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Ini yang menyembunyikannya di luar layar */
+    width: 250px;
+    height: 100vh;
+    background-color: #031434;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    z-index: 999;
+    transition: right 0.3s ease-in-out;
+    padding: 30px 20px;
+}
+
+.side-menu.active {
+    right: 0; /* Ini yang memunculkannya saat ikon garis 3 diklik */
+}
+
+.menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.menu-links {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-links li {
+    margin-bottom: 20px;
+}
+
+.menu-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.menu-links {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-links li {
+    margin-bottom: 20px;
+}
+
+.menu-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #ef4444;
+}
+
+.menu-links {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-links li {
+    margin-bottom: 20px;
+}
+
+.menu-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.menu-links a:hover {
+    color: #3b82f6;
+}
+/* ------------------------------------------- */
+
+
 /* Hero / Header Section */
 .hero-banner {
     position: relative;
@@ -59,9 +175,27 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    position: relative;
+}
+
+/* Top Navigation (Logo & Hamburger Menu) */
+.top-nav {
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-bottom: 30px; 
     position: relative;
+    z-index: 10;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
 }
 
 .hero-content {
@@ -88,7 +222,6 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
 }
 
 .site-logo {
@@ -199,8 +332,19 @@ body {
 }
 
 .wifi-icon {
-    font-size: 1.2rem;
-    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.wifi-icon img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
 }
 
 .speed-box {
