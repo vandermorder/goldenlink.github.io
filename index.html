@@ -20,17 +20,40 @@
         </select>
     </div>
 
+    <!-- Side Menu -->
+    <nav id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <span class="close-btn" id="closeMenu">&times;</span>
+        </div>
+        <ul class="menu-links">
+            <li><a href="index.html" id="menuHome">Beranda</a></li>
+            <li><a href="tentang.html" id="menuAbout">Tentang</a></li>
+        </ul>
+    </nav>
+
     <!-- Header / Hero Banner Section -->
     <header class="hero-banner">
         <div class="hero-container">
+            
+            <!-- Top Nav untuk Logo dan Menu Hamburger -->
+            <div class="top-nav">
+                <div class="brand-wrapper">
+                    <img src="download/logo1.png" alt="GoldenLink Network Logo" class="site-logo">
+                    <span class="brand-name">GoldenLink</span>
+                </div>
+                
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+
             <div class="hero-content">
                 <div class="badge-hero">
                     <span class="star">★</span> <span id="heroBadge">#1 Internet Rumah Terbaik</span>
-                </div>
-                
-                <div class="brand-wrapper">
-                    <img src="logo1.png" alt="GoldenLink Network Logo" class="site-logo">
-                    <span class="brand-name">GoldenLink</span>
                 </div>
 
                 <h1 class="hero-title">Internet Unlimited<br>Bebas FUP & Lag</h1>
@@ -58,7 +81,9 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">📶</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">45</span>
@@ -67,7 +92,7 @@
                         <h3 class="package-name">Paket Basic</h3>
                         <ul class="features">
                             <li><span class="check">✓</span> Harga Sudah Termasuk PPN</li>
-                            <li><span class="check">✓</span> Ideal untuk 1-4 perangkat</li>
+                            <li><span class="check">✓</span> Ideal untuk 1-5 perangkat</li>
                             <li><span class="check">✓</span> Unlimited Tanpa FUP</li>
                             <li><span class="check">✓</span> Gratis Biaya Pasang</li>
                         </ul>
@@ -86,7 +111,9 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">📶</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Bar Icon">
+                            </span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">50</span>
@@ -114,7 +141,9 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">📶</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">55</span>
@@ -142,7 +171,9 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">📶</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">100</span>
@@ -173,8 +204,22 @@
         <p>&copy; 2026 GoldenLink. Hubungi Layanan Pelanggan: 0858-1483-7353</p>
     </footer>
 
-    <!-- SCRIPT TERJEMAHAN -->
+    <!-- SCRIPT TERJEMAHAN & MENU -->
     <script>
+        // Logika untuk Menu Hamburger
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        hamburgerMenu.addEventListener('click', () => {
+            sideMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+
+        // Logika Terjemahan
         const translations = {
             id: {
                 heroBadge: "#1 Internet Rumah Terbaik",
@@ -193,13 +238,15 @@
                 streaming: "Bisa Streaming HD & Game",
                 zoom: "Lancar Zoom & Game Online",
                 cs: "Prioritas Layanan CS",
-                devBasic: "Ideal untuk 1-4 perangkat",
+                devBasic: "Ideal untuk 1-5 perangkat",
                 devStandard: "Ideal untuk 6-10 perangkat",
                 devExecutive: "Ideal untuk 10-14 perangkat",
                 devUltimate: "Ideal untuk 15+ perangkat",
                 priceLabel: "Harga Langganan",
                 perMonth: "/bln",
-                footer: "© 2026 GoldenLink. Hubungi Layanan Pelanggan: 0858-1483-7353"
+                footer: "© 2026 GoldenLink. Hubungi Layanan Pelanggan: 0858-1483-7353",
+                menuHome: "Beranda",
+                menuAbout: "Tentang"
             },
             en: {
                 heroBadge: "#1 Best Home Internet",
@@ -218,13 +265,15 @@
                 streaming: "HD Streaming & Gaming Ready",
                 zoom: "Smooth Zoom & Online Gaming",
                 cs: "Priority CS Support",
-                devBasic: "Ideal for 1-4 devices",
+                devBasic: "Ideal for 1-5 devices",
                 devStandard: "Ideal for 6-10 devices",
                 devExecutive: "Ideal for 10-14 devices",
                 devUltimate: "Ideal for 15+ devices",
                 priceLabel: "Subscription Price",
                 perMonth: "/mo",
-                footer: "© 2026 GoldenLink. Contact Customer Service: 0858-1483-7353"
+                footer: "© 2026 GoldenLink. Contact Customer Service: 0858-1483-7353",
+                menuHome: "Home",
+                menuAbout: "About"
             }
         };
 
@@ -237,6 +286,8 @@
             document.querySelector('.hero-title').innerHTML = t.title;
             document.querySelector('.hero-subtitle').textContent = t.subtitle;
             document.querySelector('.section-title').textContent = t.sectionTitle;
+            document.getElementById('menuHome').textContent = t.menuHome;
+            document.getElementById('menuAbout').textContent = t.menuAbout;
 
             document.querySelectorAll('.badge').forEach(el => el.textContent = t.badge);
             document.querySelectorAll('.price-label').forEach(el => el.textContent = t.priceLabel);
