@@ -50,7 +50,7 @@ body {
 .side-menu {
     position: fixed;
     top: 0;
-    right: -300px; /* Ini yang menyembunyikannya di luar layar */
+    right: -300px;
     width: 250px;
     height: 100vh;
     background-color: #031434;
@@ -61,65 +61,7 @@ body {
 }
 
 .side-menu.active {
-    right: 0; /* Ini yang memunculkannya saat ikon garis 3 diklik */
-}
-
-.menu-header {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 30px;
-}
-
-.close-btn {
-    font-size: 2rem;
-    cursor: pointer;
-    color: #ffffff;
-    line-height: 1;
-}
-
-.menu-links {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-links li {
-    margin-bottom: 20px;
-}
-
-.menu-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.menu-header {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 30px;
-}
-
-.close-btn {
-    font-size: 2rem;
-    cursor: pointer;
-    color: #ffffff;
-    line-height: 1;
-}
-
-.menu-links {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-links li {
-    margin-bottom: 20px;
-}
-
-.menu-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
+    right: 0;
 }
 
 .menu-header {
@@ -161,7 +103,6 @@ body {
 }
 /* ------------------------------------------- */
 
-
 /* Hero / Header Section */
 .hero-banner {
     position: relative;
@@ -171,25 +112,24 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Perbaikan posisi header & menu agar sejajar rapi di HP */
 .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; /* Mengatur susunan elemen ke bawah secara rapi */
+    justify-content: center;
+    position: relative;
 }
 
+/* Top Navigation (Logo & Hamburger Menu) */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-.lang-selector {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    margin-bottom: 30px; 
+    position: relative;
+    z-index: 10;
 }
 
 .hamburger-menu {
