@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenLink Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vander.css">
+    
+    <!-- Sembunyikan loading secara instan HANYA jika datang dari halaman tentang -->
+    <script>
+        if (sessionStorage.getItem('skipLoading') === 'true') {
+            const style = document.createElement('style');
+            style.innerHTML = '#loadingScreen { display: none !important; }';
+            document.head.appendChild(style);
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+    
+    <!-- Selector Bahasa Kanan Atas -->
+    <div class="lang-selector">
+        <span class="globe-icon">🌐</span>
+        <select id="languageSelect">
+            <option value="id">Indonesia (ID)</option>
+            <option value="en">English (EN)</option>
+        </select>
+    </div>
+
+    <!-- Side Menu -->
+    <nav id="sideMenu" class="side-menu">
+        <!-- Wadah Efek Jaringan Node -->
+        <div class="menu-particles" id="menuParticles"></div>
+
+        <div class="menu-header">
+            <span class="close-btn" id="closeMenu">&times;</span>
+        </div>
+        <ul class="menu-links">
+            <li><a href="vander.html?from=about" id="menuHome" onclick="sessionStorage.setItem('skipLoading', 'true')">Beranda</a></li>
+            <li><a href="tentang.html" id="menuAbout">Tentang</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header / Hero Banner Section -->
+    <header class="hero-banner">
+        <div class="hero-container">
+            
+            <!-- Top Nav untuk Logo dan Menu Hamburger -->
+            <div class="top-nav">
+                <div class="brand-wrapper">
+                    <img src="download/logo1.png" alt="GoldenLink Network Logo" class="site-logo">
+                    <span class="brand-name">GoldenLink</span>
+                </div>
+                
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="badge-hero">
+                    <span class="star">★</span> <span id="heroBadge">#1 Internet Rumah Terbaik</span>
+                </div>
+
+                <h1 class="hero-title">Internet Unlimited<br>Bebas FUP & Lag</h1>
+                <p class="hero-subtitle">Streaming 4K lancar, main game tanpa ping merah. Nikmati koneksi internet stabil tanpa kuota untuk seluruh keluarga.</p>
+            </div>
+
+            <!-- Ilustrasi Roket SVG Kanan -->
+            <div class="rocket-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M13.13 22.19l-1.63-3.83-2.6 2.6c-.39.39-1.02.39-1.41 0l-.71-.71c-.39-.39-.39-1.02 0-1.41l2.6-2.6-3.83-1.63c-.56-.24-.74-.96-.37-1.43l5.59-7.18c.31-.4 1.05-.18.99.33l-.53 4.28 3.54-3.54c.39-.39 1.02-.39 1.41 0l2.83 2.83c.39.39.39 1.02 0 1.41l-3.54 3.54 4.28-.53c.51-.06.73.68.33.99l-7.18 5.59c-.47.37-1.19.19-1.43-.37z"/>
+                    <circle cx="14.5" cy="9.5" r="1.5"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Pilihan Paket -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Pilihan Paket Langganan!</h2>
+            
+            <div class="pricing-grid">
+                <!-- Paket Basic -->
+                <div class="card">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge">Internet Only</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
+                        </div>
+                        <div class="speed-box">
+                            <span class="speed-num">45</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                        <h3 class="package-name">Paket Basic</h3>
+                        <ul class="features">
+                            <li><span class="check">✓</span> Harga Sudah Termasuk PPN</li>
+                            <li><span class="check">✓</span> Ideal untuk 1-5 perangkat</li>
+                            <li><span class="check">✓</span> Unlimited Tanpa FUP</li>
+                            <li><span class="check">✓</span> Gratis Biaya Pasang</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price-box">
+                            <span class="price-label">Harga Langganan</span>
+                            <div class="price">Rp 170rb<span>/bln</span></div>
+                        </div>
+                        <a href="https://wa.me/6285781856132?text=Halo,%20saya%20mau%20pasang%20Paket%20Basic" class="btn-arrow">→</a>
+                    </div>
+                </div>
+
+                <!-- Paket Standard -->
+                <div class="card">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge">Internet Only</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Bar Icon">
+                            </span>
+                        </div>
+                        <div class="speed-box">
+                            <span class="speed-num">50</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                        <h3 class="package-name">Paket Standard</h3>
+                        <ul class="features">
+                            <li><span class="check">✓</span> Harga Sudah Termasuk PPN</li>
+                            <li><span class="check">✓</span> Ideal untuk 6-10 perangkat</li>
+                            <li><span class="check">✓</span> Unlimited Tanpa FUP</li>
+                            <li><span class="check">✓</span> Bisa Streaming HD & Game</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price-box">
+                            <span class="price-label">Harga Langganan</span>
+                            <div class="price">Rp 185rb<span>/bln</span></div>
+                        </div>
+                        <a href="https://wa.me/6285781856132?text=Halo,%20saya%20mau%20pasang%20Paket%20Standard" class="btn-arrow">→</a>
+                    </div>
+                </div>
+
+                <!-- Paket Executive -->
+                <div class="card">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge">Internet Only</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
+                        </div>
+                        <div class="speed-box">
+                            <span class="speed-num">55</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                        <h3 class="package-name">Paket Executive</h3>
+                        <ul class="features">
+                            <li><span class="check">✓</span> Harga Sudah Termasuk PPN</li>
+                            <li><span class="check">✓</span> Ideal untuk 10-14 perangkat</li>
+                            <li><span class="check">✓</span> Unlimited Tanpa FUP</li>
+                            <li><span class="check">✓</span> Lancar Zoom & Game Online</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price-box">
+                            <span class="price-label">Harga Langganan</span>
+                            <div class="price">Rp 205rb<span>/bln</span></div>
+                        </div>
+                        <a href="https://wa.me/6285781856132?text=Halo,%20saya%20mau%20pasang%20Paket%20Executive" class="btn-arrow">→</a>
+                    </div>
+                </div>
+
+                <!-- Paket Ultimate -->
+                <div class="card">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge">Internet Only</span>
+                            <span class="wifi-icon">
+                                <img src="download/bar.png" alt="Signal Icon">
+                            </span>
+                        </div>
+                        <div class="speed-box">
+                            <span class="speed-num">100</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                        <h3 class="package-name">Paket Ultimate</h3>
+                        <ul class="features">
+                            <li><span class="check">✓</span> Harga Sudah Termasuk PPN</li>
+                            <li><span class="check">✓</span> Ideal untuk 15+ perangkat</li>
+                            <li><span class="check">✓</span> Unlimited Tanpa FUP</li>
+                            <li><span class="check">✓</span> Prioritas Layanan CS</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price-box">
+                            <span class="price-label">Harga Langganan</span>
+                            <div class="price">Rp 295rb<span>/bln</span></div>
+                        </div>
+                        <a href="https://wa.me/6285781856132?text=Halo,%20saya%20mau%20pasang%20Paket%20Ultimate" class="btn-arrow">→</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GoldenLink. Hubungi Layanan Pelanggan: 0858-1483-7353</p>
+    </footer>
+
+    <!-- SCRIPT UTAMA -->
+    <script>
+        // Logika Loading Screen Utama
+        window.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                if (sessionStorage.getItem('skipLoading') === 'true') {
+                    loadingScreen.style.display = 'none';
+                    sessionStorage.removeItem('skipLoading'); // Hapus memori agar refresh berikutnya muncul lagi
+                } else {
+                    setTimeout(() => {
+                        loadingScreen.classList.add('fade-out');
+                    }, 5000); // Muncul 5 detik saat akses normal / refresh
+                }
+            }
+        });
+
+        // Logika untuk Menu Hamburger Buka/Tutup
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        if (hamburgerMenu && sideMenu) {
+            hamburgerMenu.addEventListener('click', () => {
+                sideMenu.classList.add('active');
+            });
+        }
+
+        if (closeMenu && sideMenu) {
+            closeMenu.addEventListener('click', () => {
+                sideMenu.classList.remove('active');
+            });
+        }
+
+        // Generator Efek Jaringan (Network Nodes) untuk Side Menu
+        const particlesContainer = document.getElementById('menuParticles');
+        if (particlesContainer) {
+            particlesContainer.innerHTML = '';
+            const nodeCount = 12;
+
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.classList.add('network-node');
+                
+                const size = Math.random() * 3 + 3;
+                node.style.width = `${size}px`;
+                node.style.height = `${size}px`;
+                
+                const posX = Math.random() * 90 + 5;
+                const posY = Math.random() * 90 + 5;
+                node.style.left = `${posX}%`;
+                node.style.top = `${posY}%`;
+                
+                const duration = Math.random() * 4 + 3;
+                node.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(node);
+            }
+        }
+
+        // Logika Terjemahan Bahasa (ID / EN)
+        const translations = {
+            id: {
+                heroBadge: "#1 Internet Rumah Terbaik",
+                brand: "GoldenLink",
+                title: "Internet Unlimited<br>Bebas FUP & Lag",
+                subtitle: "Streaming 4K lancar, main game tanpa ping merah. Nikmati koneksi internet stabil tanpa kuota untuk seluruh keluarga.",
+                sectionTitle: "Pilihan Paket Langganan!",
+                badge: "Internet Only",
+                pkgBasic: "Paket Basic",
+                pkgStandard: "Paket Standard",
+                pkgExecutive: "Paket Executive",
+                pkgUltimate: "Paket Ultimate",
+                ppn: "Harga Sudah Termasuk PPN",
+                fup: "Unlimited Tanpa FUP",
+                pasang: "Gratis Biaya Pasang",
+                streaming: "Bisa Streaming HD & Game",
+                zoom: "Lancar Zoom & Game Online",
+                cs: "Prioritas Layanan CS",
+                devBasic: "Ideal untuk 1-5 perangkat",
+                devStandard: "Ideal untuk 6-10 perangkat",
+                devExecutive: "Ideal untuk 10-14 perangkat",
+                devUltimate: "Ideal untuk 15+ perangkat",
+                priceLabel: "Harga Langganan",
+                perMonth: "/bln",
+                footer: "© 2026 GoldenLink. Hubungi Layanan Pelanggan: 0858-1483-7353",
+                menuHome: "Beranda",
+                menuAbout: "Tentang",
+                aboutTitle: "Tentang GoldenLink",
+                aboutDesc: "Kami adalah penyedia layanan internet rumah terbaik yang berkomitmen menghadirkan koneksi super cepat, stabil tanpa batas FUP, dan dukungan penuh untuk seluruh anggota keluarga."
+            },
+            en: {
+                heroBadge: "#1 Best Home Internet",
+                brand: "GoldenLink",
+                title: "Unlimited Internet<br>No FUP & Zero Lag",
+                subtitle: "Smooth 4K streaming, low ping gaming. Enjoy stable internet connection without quota for the whole family.",
+                sectionTitle: "Subscription Package Options!",
+                badge: "Internet Only",
+                pkgBasic: "Basic Package",
+                pkgStandard: "Standard Package",
+                pkgExecutive: "Executive Package",
+                pkgUltimate: "Ultimate Package",
+                ppn: "Price Includes VAT",
+                fup: "Unlimited Without FUP",
+                pasang: "Free Installation Fee",
+                streaming: "HD Streaming & Gaming Ready",
+                zoom: "Smooth Zoom & Online Gaming",
+                cs: "Priority CS Support",
+                devBasic: "Ideal for 1-5 devices",
+                devStandard: "Ideal for 6-10 devices",
+                devExecutive: "Ideal for 10-14 devices",
+                devUltimate: "Ideal for 15+ devices",
+                priceLabel: "Subscription Price",
+                perMonth: "/mo",
+                footer: "© 2026 GoldenLink. Contact Customer Service: 0858-1483-7353",
+                menuHome: "Home",
+                menuAbout: "About",
+                aboutTitle: "About GoldenLink",
+                aboutDesc: "We are the best home internet service provider committed to delivering super fast connections, unlimited FUP, and full support for the whole family."
+            }
+        };
+
+        const langSelect = document.getElementById('languageSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                const t = translations[lang];
+
+                if (document.getElementById('heroBadge')) document.getElementById('heroBadge').textContent = t.heroBadge;
+                if (document.querySelector('.brand-name')) document.querySelector('.brand-name').textContent = t.brand;
+                if (document.querySelector('.hero-title')) document.querySelector('.hero-title').innerHTML = t.title || t.aboutTitle;
+                if (document.querySelector('.hero-subtitle')) document.querySelector('.hero-subtitle').textContent = t.subtitle || t.aboutDesc;
+                if (document.getElementById('aboutTitle')) document.getElementById('aboutTitle').textContent = t.aboutTitle;
+                if (document.getElementById('aboutDesc')) document.getElementById('aboutDesc').textContent = t.aboutDesc;
+                if (document.querySelector('.section-title')) document.querySelector('.section-title').textContent = t.sectionTitle;
+                if (document.getElementById('menuHome')) document.getElementById('menuHome').textContent = t.menuHome;
+                if (document.getElementById('menuAbout')) document.getElementById('menuAbout').textContent = t.menuAbout;
+
+                document.querySelectorAll('.badge').forEach(el => el.textContent = t.badge);
+                document.querySelectorAll('.price-label').forEach(el => el.textContent = t.priceLabel);
+                document.querySelectorAll('.price span').forEach(el => el.textContent = t.perMonth);
+
+                const pkgNames = document.querySelectorAll('.package-name');
+                if (pkgNames.length >= 4) {
+                    pkgNames[0].textContent = t.pkgBasic;
+                    pkgNames[1].textContent = t.pkgStandard;
+                    pkgNames[2].textContent = t.pkgExecutive;
+                    pkgNames[3].textContent = t.pkgUltimate;
+                }
+
+                const cards = document.querySelectorAll('.card');
+                if (cards.length >= 4) {
+                    cards[0].querySelectorAll('.features li')[0].innerHTML = `<span class="check">✓</span> ${t.ppn}`;
+                    cards[0].querySelectorAll('.features li')[1].innerHTML = `<span class="check">✓</span> ${t.devBasic}`;
+                    cards[0].querySelectorAll('.features li')[2].innerHTML = `<span class="check">✓</span> ${t.fup}`;
+                    cards[0].querySelectorAll('.features li')[3].innerHTML = `<span class="check">✓</span> ${t.pasang}`;
+
+                    cards[1].querySelectorAll('.features li')[0].innerHTML = `<span class="check">✓</span> ${t.ppn}`;
+                    cards[1].querySelectorAll('.features li')[1].innerHTML = `<span class="check">✓</span> ${t.devStandard}`;
+                    cards[1].querySelectorAll('.features li')[2].innerHTML = `<span class="check">✓</span> ${t.fup}`;
+                    cards[1].querySelectorAll('.features li')[3].innerHTML = `<span class="check">✓</span> ${t.streaming}`;
+
+                    cards[2].querySelectorAll('.features li')[0].innerHTML = `<span class="check">✓</span> ${t.ppn}`;
+                    cards[2].querySelectorAll('.features li')[1].innerHTML = `<span class="check">✓</span> ${t.devExecutive}`;
+                    cards[2].querySelectorAll('.features li')[2].innerHTML = `<span class="check">✓</span> ${t.fup}`;
+                    cards[2].querySelectorAll('.features li')[3].innerHTML = `<span class="check">✓</span> ${t.zoom}`;
+
+                    cards[3].querySelectorAll('.features li')[0].innerHTML = `<span class="check">✓</span> ${t.ppn}`;
+                    cards[3].querySelectorAll('.features li')[1].innerHTML = `<span class="check">✓</span> ${t.devUltimate}`;
+                    cards[3].querySelectorAll('.features li')[2].innerHTML = `<span class="check">✓</span> ${t.fup}`;
+                    cards[3].querySelectorAll('.features li')[3].innerHTML = `<span class="check">✓</span> ${t.cs}`;
+                }
+
+                if (document.querySelector('footer p')) document.querySelector('footer p').textContent = t.footer;
+            });
+        }
+    </script>
+</body>
+</html>
