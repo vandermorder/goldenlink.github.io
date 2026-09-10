@@ -11,6 +11,9 @@
 </head>
 <body>
 
+    <!-- Audio Element untuk Suara Tap/Klik (Tanpa Web Audio API) -->
+    <audio id="tapSound" src="loading.mp3" preload="auto"></audio>
+
     <!-- Selector Bahasa Kanan Atas -->
     <div class="lang-selector">
         <span class="globe-icon">🌐</span>
@@ -29,8 +32,8 @@
             <span class="close-btn" id="closeMenu">&times;</span>
         </div>
         <ul class="menu-links">
-            <li><a href="index.html?from=about" id="menuHome" onclick="sessionStorage.setItem('skipLoading', 'true')">Beranda</a></li>
-            <li><a href="tentang.html" id="menuAbout">Tentang</a></li>
+            <li><a href="index.html?from=about" id="menuHome" onclick="event.preventDefault(); sessionStorage.setItem('skipLoading', 'true'); playAndNav(this.href);">Beranda</a></li>
+            <li><a href="tentang.html" id="menuAbout" onclick="event.preventDefault(); playAndNav(this.href);">Tentang</a></li>
         </ul>
     </nav>
 
@@ -63,12 +66,9 @@
                 <p class="hero-subtitle" id="aboutDesc">Kami adalah penyedia layanan internet rumah terbaik yang berkomitmen menghadirkan koneksi super cepat, stabil tanpa batas FUP, dan dukungan penuh untuk seluruh anggota keluarga.</p>
             </div>
 
-            <!-- Ilustrasi Roket Background SVG -->
+            <!-- Ilustrasi Roket Background -->
             <div class="rocket-bg">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M13.13 22.19l-1.63-3.83-2.6 2.6c-.39.39-1.02.39-1.41 0l-.71-.71c-.39-.39-.39-1.02 0-1.41l2.6-2.6-3.83-1.63c-.56-.24-.74-.96-.37-1.43l5.59-7.18c.31-.4 1.05-.18.99.33l-.53 4.28 3.54-3.54c.39-.39 1.02-.39 1.41 0l2.83 2.83c.39.39.39 1.02 0 1.41l-3.54 3.54 4.28-.53c.51-.06.73.68.33.99l-7.18 5.59c-.47.37-1.19.19-1.43-.37z"/>
-                    <circle cx="14.5" cy="9.5" r="1.5"/>
-                </svg>
+                <img src="roket.png" alt="Background Roket" style="width: 100%; height: auto;">
             </div>
         </div>
     </header>
@@ -80,6 +80,27 @@
 
     <!-- SCRIPT TERJEMAHAN, MENU & PARTIKEL JARINGAN -->
     <script>
+        // Memutar Suara via Tag Audio Biasa
+        const tapAudio = document.getElementById('tapSound');
+        
+        function playAndNav(url) {
+            if (tapAudio) {
+                tapAudio.currentTime = 0;
+                tapAudio.play().catch(e => console.log(e));
+                setTimeout(() => window.location.href = url, 300); // Memberi jeda 300 milidetik agar suara terdengar
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        window.addEventListener('click', (event) => {
+            // Jika elemen yang diklik bukan link menu, mainkan suara seperti biasa
+            if (!event.target.closest('.menu-links a') && tapAudio) {
+                tapAudio.currentTime = 0; 
+                tapAudio.play().catch(e => console.log(e));
+            }
+        });
+
         const hamburgerMenu = document.getElementById('hamburgerMenu');
         const sideMenu = document.getElementById('sideMenu');
         const closeMenu = document.getElementById('closeMenu');
