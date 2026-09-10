@@ -20,6 +20,9 @@
 </head>
 <body>
 
+    <!-- Audio Element untuk Suara Tap/Klik (Tanpa Web Audio API) -->
+    <audio id="tapSound" src="loading.mp3" preload="auto"></audio>
+
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-spinner"></div>
@@ -37,23 +40,19 @@
 
     <!-- Side Menu -->
     <nav id="sideMenu" class="side-menu">
-        <!-- Wadah Efek Jaringan Node -->
         <div class="menu-particles" id="menuParticles"></div>
-
         <div class="menu-header">
             <span class="close-btn" id="closeMenu">&times;</span>
         </div>
         <ul class="menu-links">
-            <li><a href="index.html?from=about" id="menuHome" onclick="sessionStorage.setItem('skipLoading', 'true')">Beranda</a></li>
-            <li><a href="tentang.html" id="menuAbout">Tentang</a></li>
+            <li><a href="index.html?from=about" id="menuHome" onclick="event.preventDefault(); sessionStorage.setItem('skipLoading', 'true'); playAndNav(this.href);">Beranda</a></li>
+            <li><a href="tentang.html" id="menuAbout" onclick="event.preventDefault(); playAndNav(this.href);">Tentang</a></li>
         </ul>
     </nav>
 
     <!-- Header / Hero Banner Section -->
     <header class="hero-banner">
         <div class="hero-container">
-            
-            <!-- Top Nav untuk Logo dan Menu Hamburger -->
             <div class="top-nav">
                 <div class="brand-wrapper">
                     <img src="logo1.png" alt="GoldenLink Network Logo" class="site-logo">
@@ -73,17 +72,12 @@
                 <div class="badge-hero">
                     <span class="star">★</span> <span id="heroBadge">#1 Internet Rumah Terbaik</span>
                 </div>
-
                 <h1 class="hero-title">Internet Unlimited<br>Bebas FUP & Lag</h1>
                 <p class="hero-subtitle">Streaming 4K lancar, main game tanpa ping merah. Nikmati koneksi internet stabil tanpa kuota untuk seluruh keluarga.</p>
             </div>
 
-            <!-- Ilustrasi Roket SVG Kanan -->
             <div class="rocket-bg">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M13.13 22.19l-1.63-3.83-2.6 2.6c-.39.39-1.02.39-1.41 0l-.71-.71c-.39-.39-.39-1.02 0-1.41l2.6-2.6-3.83-1.63c-.56-.24-.74-.96-.37-1.43l5.59-7.18c.31-.4 1.05-.18.99.33l-.53 4.28 3.54-3.54c.39-.39 1.02-.39 1.41 0l2.83 2.83c.39.39.39 1.02 0 1.41l-3.54 3.54 4.28-.53c.51-.06.73.68.33.99l-7.18 5.59c-.47.37-1.19.19-1.43-.37z"/>
-                    <circle cx="14.5" cy="9.5" r="1.5"/>
-                </svg>
+                <img src="roket.png" alt="Background Roket" style="width: 100%; height: auto;">
             </div>
         </div>
     </header>
@@ -92,16 +86,13 @@
     <section class="pricing-section">
         <div class="container">
             <h2 class="section-title">Pilihan Paket Langganan!</h2>
-            
             <div class="pricing-grid">
                 <!-- Paket Basic -->
                 <div class="card">
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">
-                                <img src="bar.png" alt="Signal Icon">
-                            </span>
+                            <span class="wifi-icon"><img src="bar.png" alt="Signal Icon"></span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">45</span>
@@ -129,9 +120,7 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">
-                                <img src="bar.png" alt="Bar Icon">
-                            </span>
+                            <span class="wifi-icon"><img src="bar.png" alt="Bar Icon"></span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">50</span>
@@ -159,9 +148,7 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">
-                                <img src="bar.png" alt="Signal Icon">
-                            </span>
+                            <span class="wifi-icon"><img src="bar.png" alt="Signal Icon"></span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">55</span>
@@ -189,9 +176,7 @@
                     <div>
                         <div class="card-top">
                             <span class="badge">Internet Only</span>
-                            <span class="wifi-icon">
-                                <img src="bar.png" alt="Signal Icon">
-                            </span>
+                            <span class="wifi-icon"><img src="bar.png" alt="Signal Icon"></span>
                         </div>
                         <div class="speed-box">
                             <span class="speed-num">100</span>
@@ -213,7 +198,6 @@
                         <a href="https://wa.me/6285781856132?text=Halo,%20saya%20mau%20pasang%20Paket%20Ultimate" class="btn-arrow">→</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -224,65 +208,72 @@
 
     <!-- SCRIPT UTAMA -->
     <script>
-        // Logika Loading Screen Utama
+        // Memutar Suara via Tag Audio Biasa
+        const tapAudio = document.getElementById('tapSound');
+        
+        function playAndNav(url) {
+            if (tapAudio) {
+                tapAudio.currentTime = 0;
+                tapAudio.play().catch(e => console.log(e));
+                setTimeout(() => window.location.href = url, 300); // Memberi jeda 300 milidetik agar suara terdengar
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        window.addEventListener('click', (event) => {
+            // Jika elemen yang diklik bukan link menu, mainkan suara seperti biasa
+            if (!event.target.closest('.menu-links a') && tapAudio) {
+                tapAudio.currentTime = 0; 
+                tapAudio.play().catch(e => console.log(e));
+            }
+        });
+
+        // Logika Loading Screen
         window.addEventListener('DOMContentLoaded', () => {
             const loadingScreen = document.getElementById('loadingScreen');
             if (loadingScreen) {
                 if (sessionStorage.getItem('skipLoading') === 'true') {
                     loadingScreen.style.display = 'none';
-                    sessionStorage.removeItem('skipLoading'); // Hapus memori agar refresh berikutnya muncul lagi
+                    sessionStorage.removeItem('skipLoading');
                 } else {
                     setTimeout(() => {
                         loadingScreen.classList.add('fade-out');
-                    }, 5000); // Muncul 5 detik saat akses normal / refresh
+                    }, 5000);
                 }
             }
         });
 
-        // Logika untuk Menu Hamburger Buka/Tutup
+        // Logika Hamburger Menu
         const hamburgerMenu = document.getElementById('hamburgerMenu');
         const sideMenu = document.getElementById('sideMenu');
         const closeMenu = document.getElementById('closeMenu');
 
         if (hamburgerMenu && sideMenu) {
-            hamburgerMenu.addEventListener('click', () => {
-                sideMenu.classList.add('active');
-            });
+            hamburgerMenu.addEventListener('click', () => sideMenu.classList.add('active'));
         }
-
         if (closeMenu && sideMenu) {
-            closeMenu.addEventListener('click', () => {
-                sideMenu.classList.remove('active');
-            });
+            closeMenu.addEventListener('click', () => sideMenu.classList.remove('active'));
         }
 
-        // Generator Efek Jaringan (Network Nodes) untuk Side Menu
+        // Generator Efek Jaringan
         const particlesContainer = document.getElementById('menuParticles');
         if (particlesContainer) {
             particlesContainer.innerHTML = '';
-            const nodeCount = 12;
-
-            for (let i = 0; i < nodeCount; i++) {
+            for (let i = 0; i < 12; i++) {
                 const node = document.createElement('div');
                 node.classList.add('network-node');
-                
                 const size = Math.random() * 3 + 3;
                 node.style.width = `${size}px`;
                 node.style.height = `${size}px`;
-                
-                const posX = Math.random() * 90 + 5;
-                const posY = Math.random() * 90 + 5;
-                node.style.left = `${posX}%`;
-                node.style.top = `${posY}%`;
-                
-                const duration = Math.random() * 4 + 3;
-                node.style.animationDuration = `${duration}s`;
-                
+                node.style.left = `${Math.random() * 90 + 5}%`;
+                node.style.top = `${Math.random() * 90 + 5}%`;
+                node.style.animationDuration = `${Math.random() * 4 + 3}s`;
                 particlesContainer.appendChild(node);
             }
         }
 
-        // Logika Terjemahan Bahasa (ID / EN)
+        // Terjemahan Bahasa
         const translations = {
             id: {
                 heroBadge: "#1 Internet Rumah Terbaik",
