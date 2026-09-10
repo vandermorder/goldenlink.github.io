@@ -111,10 +111,6 @@ body {
     right: 0;
 }
 
-.side-menu.active {
-    right: 0;
-}
-
 /* Container Animasi Jaringan Node */
 .menu-particles {
     position: absolute;
@@ -278,17 +274,18 @@ body {
     max-width: 540px;
 }
 
-/* Roket Background SVG */
+/* Background Image Section */
 .rocket-bg {
     position: absolute;
     right: -20px;
     top: 50%;
-    transform: translateY(-50%) rotate(-15deg);
-    opacity: 0.15;
+    transform: translateY(-50%);
+    opacity: 1; /* Diubah dari 0.15 agar lebih jelas */
     pointer-events: none;
     z-index: 1;
 }
 
+.rocket-bg img,
 .rocket-bg svg {
     width: 450px;
     height: 450px;
@@ -481,7 +478,7 @@ footer {
         font-size: 2.2rem;
     }
     .rocket-bg {
-        opacity: 0.08;
+        opacity: 0.8; /* Disesuaikan untuk layar kecil */
         right: -100px;
     }
 }
